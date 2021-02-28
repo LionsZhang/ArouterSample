@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.arouter.R
 import com.arouter.intercept.LoginNavigationCallbackImpl
-import com.arouter.lib.R
+
 import com.arouter.service.ARouterConstant
 
 class MainActivity : AppCompatActivity() {

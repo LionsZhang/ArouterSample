@@ -3,7 +3,8 @@ package com
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.arouter.lib.R
+import com.arouter.R
+
 import com.arouter.service.ARouterConstant
 
 @Route(path = ARouterConstant.MAIN2ACTIVITY)
