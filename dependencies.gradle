@@ -1,0 +1,95 @@
+def supportVersion = "25.3.1"
+def powerMockVersion = "1.6.3"
+project.ext {
+
+    buildValue = [
+            gitRevisionNumber: 'git rev-list HEAD --count'.execute().getText().trim().toInteger(),
+
+            isJenkins: System.properties['isJenkins'] != null,
+            resetSigningInJenkins: true,
+            jenkinsTaskType: System.properties['jenkinsTaskType'],//feature/develop/tinker
+            jenkinsNumber: System.properties['jenkinsNumber'],
+            jenkinsUrl: System.properties['jenkinsUrl'],
+
+            tinkerEnable: false,
+            tinkerPatchTask: null,//base/hotfix
+            tinkerVariant: null,//normal-debug/normal-release
+            tinkerBranch: null,//
+            tags : [""],//已经存在的tag，禁止重复构建基准包，覆盖服务器上的备份
+    ]
+
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: '26.0.1',
+            applicationId    : "com.paisheng.pp",
+            minSdkVersion    : 14,
+            targetSdkVersion : 23,
+            versionCode      : 21,//'git rev-list HEAD --count'.execute().getText().trim().toInteger(),
+            versionName      : "2.0.2"
+    ]
+
+    signing_default = [
+            keyAlias         : 'tuandai',
+            keyPassword      : 'tuandai123888',
+            storeFile        : '../tuandai_test.keystore',
+            storePassword    : 'tuandai123888'
+    ]
+
+    dependencies = [
+            //android-support
+            "support-annotations"          : "com.android.support:support-annotations:${supportVersion}",
+            "support-v4"                   : "com.android.support:support-v4:${supportVersion}",
+            "constrant"                    : "com.android.support.constraint:constraint-layout:1.0.2",
+
+            //ps_lib
+//            "ps_lib"                      : "com.paisheng.lib:pslib:1.2.4.4",
+            "ps_lib"                       : "com.paisheng.lib:pslib:1.2.6-SNAPSHOT",
+
+            //compiler
+            "aourter-annotationProcessor"  : "com.alibaba:arouter-compiler:1.1.4",
+            "aourter-api"                  : "com.alibaba:arouter-api:1.2.4",
+
+
+            "butterknife"                  : "com.jakewharton:butterknife-compiler:8.5.1",
+
+            //other
+            "gson"                         : "com.google.code.gson:gson:2.2.2",
+
+            //bugly
+            "bugly_crashreport"            : "com.tencent.bugly:crashreport:2.6.5",
+            "bugly_nativecrashreport"      : "com.tencent.bugly:nativecrashreport:3.3.0",
+
+            //jpush
+            "jpush"                        : "cn.jiguang.sdk:jpush:3.0.3",
+            "jcore"                        : "cn.jiguang.sdk:jcore:1.1.1",
+
+            //神策
+            "SensorsAnalyticsSDK"          : "com.sensorsdata.analytics.android:SensorsAnalyticsSDK:1.8.6",
+
+            //EventBus
+            "eventbus"                     : "org.greenrobot:eventbus:3.0.0",
+
+            //multidex
+            "multidex"                     : "com.android.support:multidex:1.0.1",
+
+
+
+            "appcompat-v7"                 : "com.android.support:appcompat-v7:${supportVersion}",
+            "design"                       : "com.android.support:design:${supportVersion}",
+            "recyclerview"                 : "com.android.support:recyclerview-v7:${supportVersion}",
+            "cardview"                     : "com.android.support:cardview-v7:${supportVersion}",
+
+            "BaseRecyclerViewAdapterHelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.14",
+
+            "nineOldAnddroidAnimater"      : "com.nineoldandroids:library:2.4.0",
+
+            "sobot"                        : "com.sobot.chat:sobotsdk:2.3.2",
+            //junit4
+            "powermock-module-junit4"      : "org.powermock:powermock-module-junit4:${powerMockVersion}",
+            //easymock
+            "powermock-api-easymock"       : "org.powermock:powermock-api-easymock:${powerMockVersion}",
+            //mockito
+            "powermock-api-mockito"        : "org.powermock:powermock-api-mockito:${powerMockVersion}",
+    ]
+
+}
